@@ -77,6 +77,7 @@ const getPeriodForStatistic = (state) => {
 const getAllTransactionsForStat = (state) => {
   const categoryNew = getCategories(state);
   const objectSummary = getSummary(state) || {};
+  // На беці потрібно повертати обʼєкт такого типу(скоріш за все categoriesSummary - масив усіх категорій які були використані,expenseSummary - вже пораховані усі витрати на бекенді у вигляді числа,incomeSummary - Дохід користувача (числом))
   const { categoriesSummary, expenseSummary, incomeSummary } = objectSummary;
   const newExpenseSummary = String(normalizeAmount(expenseSummary * -1));
   const newIncomeSummary = normalizeAmount(incomeSummary);

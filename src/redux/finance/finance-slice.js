@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  allTransactions,
-  getSummary,
-  getCategories,
-  addTransaction,
-} from "./finance-operation";
-import { logOut, refresh } from "redux/session/auth-operation";
 import { colors } from "assets/const";
 import { toast } from "react-toastify";
+import { logOut, refresh } from "redux/session/auth-operation";
+import {
+  addTransaction,
+  allTransactions,
+  getCategories,
+  getSummary,
+} from "./finance-operation";
 
 const initialState = {
   data: null,
@@ -32,7 +32,6 @@ const financeSlice = createSlice({
     },
     [allTransactions.rejected]: (state, { payload }) => {
       state.loading = false;
-      console.log("allTransactions", payload);
       state.error = payload;
       if (payload) {
         toast.error("Fatal error");
@@ -48,7 +47,6 @@ const financeSlice = createSlice({
     },
     [getSummary.rejected]: (state, { payload }) => {
       state.loading = false;
-      console.log("getSummary", payload);
       state.error = payload;
       if (payload) {
         toast.error("Fatal error");
@@ -69,7 +67,6 @@ const financeSlice = createSlice({
     },
     [getCategories.rejected]: (state, { payload }) => {
       state.loading = false;
-      console.log("getCategories", payload);
       state.error = payload;
       if (payload) {
         toast.error("Fatal error");
@@ -92,7 +89,6 @@ const financeSlice = createSlice({
     [addTransaction.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
-      console.log("addTransaction", payload);
       if (payload === "Request failed with status code 409") {
         toast.error("Error, try another one");
       } else {

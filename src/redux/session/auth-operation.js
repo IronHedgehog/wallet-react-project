@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://wallet.goit.ua/";
+axios.defaults.baseURL = "https://wallet-react-project-back.onrender.com/";
 
 export const token = {
   set(token) {

@@ -1,21 +1,23 @@
-import s from "./DiagramTab.module.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import Chart from "components/Chart/Chart";
-import Table from "components/Table/Table";
-import financeSelectors from "redux/finance/finance-selectors";
-import { getSummary } from "redux/finance/finance-operation";
-import { refresh } from "redux/session/auth-operation";
 import { allMonths } from "assets/const";
+import Chart from "components/Chart/Chart";
 import InlineLoader from "components/InlineLoader";
+import Table from "components/Table/Table";
+import { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { FcStatistics } from "react-icons/fc";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { getSummary } from "redux/finance/finance-operation";
+import financeSelectors from "redux/finance/finance-selectors";
+import { refresh } from "redux/session/auth-operation";
+import s from "./DiagramTab.module.scss";
 
 const DiagramTab = () => {
   const [monthForState, setMonthForState] = useState("Month");
   const [yearForState, setYearForState] = useState("Year");
-  const [period, setPeriod] = useState("");
+  const [period, setPeriod] = useState(
+    `?month=${new Date().getMonth() + 1}&year=${new Date().getFullYear()}`
+  );
 
   const isLoading = useSelector(financeSelectors.getLoading);
   const summary = useSelector(financeSelectors.getSummary);
